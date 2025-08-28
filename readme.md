@@ -146,7 +146,7 @@ I welcome:
 - Contributions of new smartphone images to expand the dataset
 - Educational or citizen science outreach projects
 
-📬 **Shan Parmar**  
+📬 **Shantanu Parmar**  
 📧 Email: *shantanu.c.parmar@gmail.cpm*  
 🌐 Website: https://shantanu-parmar.github.io/  
 GitHub: https://github.com/Shantanu-Parmar
@@ -166,5 +166,5 @@ GitHub: https://github.com/Shantanu-Parmar
 
 Special thanks to:
 -- Ms. Sophia Bhatti (UPenn)
--- Ms. Maria Pasayalo (UofF)
+-- Ms. Maria Pasayalo (U of Florida)
 ---
