@@ -1,7 +1,7 @@
 # MobilTelesco: A Smartphone-Based Astrophotography Dataset
-
-MobilTelesco is a pioneering, open-access dataset featuring astrophotography images captured using **affordable smartphone setups**. This project explores how modern consumer devices—paired with basic stabilization techniques—can democratize sky observation and contribute to citizen-led astronomical research and machine learning applications.
 ---
+MobilTelesco is a pioneering, open-access dataset featuring astrophotography images captured using **affordable smartphone setups**. This project explores how modern consumer devices—paired with basic stabilization techniques—can democratize sky observation and contribute to citizen-led astronomical research and machine learning applications.
+
 
 ## 🌌 Overview
 
