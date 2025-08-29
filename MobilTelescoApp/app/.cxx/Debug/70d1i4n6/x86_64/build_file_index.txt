@@ -1,0 +1,1 @@
+C:\Users\HP\AndroidStudioProjects\MobilTelesco2\app\src\main\cpp\CMakeLists.txt

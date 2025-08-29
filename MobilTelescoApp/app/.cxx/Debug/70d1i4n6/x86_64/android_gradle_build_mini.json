@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "C:\\Users\\HP\\AndroidStudioProjects\\MobilTelesco2\\app\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\HP\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\Users\\HP\\AndroidStudioProjects\\MobilTelesco2\\app\\.cxx\\Debug\\70d1i4n6\\x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\HP\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\Users\\HP\\AndroidStudioProjects\\MobilTelesco2\\app\\.cxx\\Debug\\70d1i4n6\\x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}
