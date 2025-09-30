@@ -208,7 +208,7 @@
       }
 
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(1, container.clientWidth / container.clientHeight, 0.1, 1000);
+      const camera = new THREE.PerspectiveCamera(5, container.clientWidth / container.clientHeight, 0.1, 1000);
       const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('renderCanvas'), antialias: true });
       if (!renderer) {
         console.error('WebGLRenderer initialization failed');
@@ -297,6 +297,7 @@
   </script>
 </body>
 </html>
+
 
 
 
