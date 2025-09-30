@@ -6,161 +6,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
   <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f9fafb;
-      color: #1f2937;
-      margin: 0;
-      padding: 0;
-    }
-    .logo {
-      height: 60px;
-      width: auto;
-      margin: 10px;
-    }
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background-color: #ffffff;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .intro-section {
-      text-align: center;
-      padding: 4rem 2rem;
-      background-color: #e6f3ef;
-    }
-    .canvas-container {
-      width: 100%;
-      max-width: 600px;
-      margin: 2rem auto;
-      height: 400px;
-      background-color: #d4f7e6;
-      border-radius: 10px;
-      overflow: hidden;
-      position: relative;
-    }
-    canvas {
-      width: 100%;
-      height: 100%;
-    }
-    video, img {
-      width: 100%;
-      max-height: 320px;
-      object-fit: contain;
-      background-color: #e6f3ef;
-    }
-    h1 {
-      color: #2b2b2b;
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-    h2 {
-      color: #2b2b2b;
-      font-size: 1.875rem;
-      font-weight: 600;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-    }
-    .section-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-    }
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-    .comparison-item {
-      background-color: #d4f7e6;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      height: 320px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .comparison-item h3 {
-      color: #2b2b2b;
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-    .tabs {
-      display: flex;
-      width: 100%;
-      background-color: #d4f7e6;
-      margin-bottom: 1rem;
-    }
-    .tab {
-      flex: 1;
-      padding: 0.75rem 1.5rem;
-      text-align: center;
-      cursor: pointer;
-      color: #2b2b2b;
-      background-color: #e6f3ef;
-      border: 1px solid #a8e6cf;
-      transition: all 0.3s ease;
-    }
-    .tab:hover {
-      background-color: #a8e6cf;
-      color: #ffffff;
-    }
-    .tab.active {
-      background-color: #a8e6cf;
-      color: #ffffff;
-    }
-    .tab-content {
-      display: none;
-      padding: 2rem;
-    }
-    .tab-content.active {
-      display: block;
-    }
-    .footer {
-      text-align: center;
-      padding: 2rem;
-      background-color: #ffffff;
-      box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .playstore-icon {
-      height: 50px;
-      width: auto;
-      margin: 1rem;
-    }
+    body { font-family: 'Arial', sans-serif; background-color: #f9fafb; color: #1f2937; margin: 0; padding: 0; }
+    .logo { height: 60px; width: auto; margin: 10px; }
+    .header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background-color: #ffffff; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 100; }
+    .intro-section { text-align: center; padding: 4rem 2rem; background-color: #e6f3ef; }
+    .canvas-container { width: 100%; max-width: 600px; margin: 2rem auto; height: 400px; background-color: #d4f7e6; border-radius: 10px; overflow: hidden; position: relative; }
+    canvas { width: 100%; height: 100%; }
+    video, img { width: 100%; max-height: 320px; object-fit: contain; background-color: #e6f3ef; }
+    h1 { color: #2b2b2b; font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+    h2 { color: #2b2b2b; font-size: 1.875rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; }
+    .section-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .comparison-grid { display: grid; grid-template-columns: minmax(120px, 1fr) repeat(3, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .comparison-item { background-color: #d4f7e6; padding: 0.5rem; border-radius: 0.25rem; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); text-align: center; height: 200px; display: flex; align-items: center; justify-content: center; }
+    .comparison-item h3 { color: #2b2b2b; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .tabs { display: flex; width: 100%; background-color: #d4f7e6; margin-bottom: 1rem; }
+    .tab { flex: 1; padding: 0.75rem 1.5rem; text-align: center; cursor: pointer; color: #2b2b2b; background-color: #e6f3ef; border: 1px solid #a8e6cf; transition: all 0.3s ease; }
+    .tab:hover { background-color: #a8e6cf; color: #ffffff; }
+    .tab.active { background-color: #a8e6cf; color: #ffffff; }
+    .tab-content { display: none; padding: 2rem; }
+    .tab-content.active { display: block; }
+    .footer { text-align: center; padding: 2rem; background-color: #ffffff; box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); }
+    .playstore-icon { height: 50px; width: auto; margin: 1rem; }
+    .slideshow-container { position: relative; max-width: 200px; height: 150px; margin: 0 auto; }
+    .slide { display: none; width: 100%; height: 100%; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .prev, .next { cursor: pointer; position: absolute; top: 50%; width: auto; padding: 0.5rem; color: #fff; font-weight: bold; font-size: 1rem; transition: 0.6s ease; background-color: rgba(0, 0, 0, 0.5); border-radius: 0 3px 3px 0; }
+    .next { right: 0; border-radius: 3px 0 0 3px; }
+    .prev:hover, .next:hover { background-color: rgba(0, 0, 0, 0.8); }
   </style>
 </head>
 <body>
-  <!-- Header with Logo -->
   <div class="header">
     <img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/0330e582510a477b6c22b637dc45a1024824e798/mbtr.png" alt="MobilTelesco Logo" class="logo">
     <nav>
       <a href="#demos" class="text-blue-600 hover:text-blue-800 ml-4">Demos</a>
     </nav>
   </div>
-
-  <!-- Introduction Section -->
   <div class="intro-section">
     <h1>MobilTelesco: Pioneering Smartphone Astrophotography</h1>
-    <p class="text-lg mt-4">MobilTelesco is an open-access dataset capturing the beauty of the night sky using affordable smartphone setups. This project demonstrates how modern consumer devices, paired with basic stabilization and long-exposure apps, can democratize astronomical observation and fuel citizen-led research and machine learning innovations. Accepted at CAIP 2025, our work in “Evaluating Deep Learning Models on Smartphone-Based Astrophotography” showcases the potential of this dataset.</p>
+    <p class="text-lg mt-4">MobilTelesco is an open-access dataset capturing the beauty of the night sky using affordable smartphone setups. This project demonstrates how modern consumer devices, paired with basic stabilization and long-exposure apps, can democratize astronomical observation and fuel citizen-led research and machine learning innovations. Accepted at CAIP 2025 Conference, our work in “Benchmarking Deep Learning-Based Object Detection Models on Feature Deficient Astrophotography Imagery Dataset” [https://arxiv.org/abs/2508.06537] showcases the potential of this dataset.</p>
     <p class="text-md mt-2">Explore a universe captured with minimal budget, no professional telescope, and a passion for open-source science. From stars and constellations to the Milky Way, MobilTelesco invites you to contribute to accessible astronomy.</p>
-    <!-- <div class="canvas-container" id="3dCanvas">
+    <div class="canvas-container" id="3dCanvasContainer">
       <canvas id="renderCanvas"></canvas>
-    </div> -->
+    </div>
     <p class="text-sm mt-2 italic">"A telescope in your pocket. The universe on your screen."</p>
   </div>
-
-  <!-- Demos Tab Section -->
   <div class="container mx-auto py-8" id="demos">
     <h2 class="text-3xl font-bold text-center mb-6">Demos</h2>
     <div class="tabs">
@@ -168,8 +60,6 @@
       <div class="tab" onclick="switchTab('segmentation')">Segmentation</div>
       <div class="tab" onclick="switchTab('generative')">Generative</div>
     </div>
-
-    <!-- Detection Results Section -->
     <div id="detection-tab" class="tab-content active">
       <section>
         <h2 class="text-2xl font-semibold mb-4">Detection Results</h2>
@@ -209,19 +99,15 @@
         </div>
       </section>
     </div>
-
-    <!-- Segmentation Results Section -->
     <div id="segmentation-tab" class="tab-content">
       <section>
         <h2 class="text-2xl font-semibold mb-4">Segmentation Results</h2>
         <p class="text-center text-lg">Coming Soon</p>
       </section>
     </div>
-
-    <!-- Generative Results Section -->
     <div id="generative-tab" class="tab-content">
       <section>
-        <h2 class="text-2xl font-semibold mb-4">Generative Results</h2>
+        <h2 class="text-2xl font-semibold mb-4">Generative Results [StrCGAN] <a href="https://doi.org/10.48550/arXiv.2509.19805" target="_blank" class="text-blue-600">[Citation]</a></h2>
         <div class="comparison-grid">
           <div class="comparison-item"><h3>Object</h3></div>
           <div class="comparison-item"><h3>Ground Truth</h3></div>
@@ -256,20 +142,66 @@
           <div class="comparison-item"><video src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/f271888d0d1660762551a0425cebf4e21fdf4192/videos/ZetaTauri-mbtr-raw.mp4" autoplay loop muted style="height: 100%; width: auto;"></video></div>
           <div class="comparison-item"><video src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/f271888d0d1660762551a0425cebf4e21fdf4192/videos/Zeta%20Tauri_inf.mp4" autoplay loop muted style="height: 100%; width: auto;"></video></div>
         </div>
+        <h2 class="text-2xl font-semibold mt-8 mb-4">Common GANs</h2>
+        <div class="section-grid">
+          <div class="slideshow-container">
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/BigGAN/fake_images_epoch_5_class6.png" alt="BigGAN Epoch 5 Class 6"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/BigGAN/fake_images_epoch_10_class0.png" alt="BigGAN Epoch 10 Class 0"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/BigGAN/fake_images_epoch_15_class0.png" alt="BigGAN Epoch 15 Class 0"></div>
+            <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+          </div>
+          <div class="slideshow-container">
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/CGAN/fake_images_epoch_5_class0.png" alt="CGAN Epoch 5 Class 0"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/CGAN/fake_images_epoch_10_class2.png" alt="CGAN Epoch 10 Class 2"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/CGAN/fake_images_epoch_15_class5.png" alt="CGAN Epoch 15 Class 5"></div>
+            <a class="prev" onclick="plusSlides(-1, 1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
+          </div>
+          <div class="slideshow-container">
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/DCGAN/fake_images_epoch_5.png" alt="DCGAN Epoch 5"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/DCGAN/fake_images_epoch_10.png" alt="DCGAN Epoch 10"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/DCGAN/fake_images_epoch_15.png" alt="DCGAN Epoch 15"></div>
+            <a class="prev" onclick="plusSlides(-1, 2)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1, 2)">&#10095;</a>
+          </div>
+          <div class="slideshow-container">
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/DDIM/fake_images_epoch_5.png" alt="DDIM Epoch 5"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/DDIM/fake_images_epoch_10.png" alt="DDIM Epoch 10"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/DDIM/fake_images_epoch_15.png" alt="DDIM Epoch 15"></div>
+            <a class="prev" onclick="plusSlides(-1, 3)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1, 3)">&#10095;</a>
+          </div>
+          <div class="slideshow-container">
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/DDPM/fake_images_epoch_5.png" alt="DDPM Epoch 5"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/DDPM/fake_images_epoch_10.png" alt="DDPM Epoch 10"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/DDPM/fake_images_epoch_15.png" alt="DDPM Epoch 15"></div>
+            <a class="prev" onclick="plusSlides(-1, 4)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1, 4)">&#10095;</a>
+          </div>
+          <div class="slideshow-container">
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/WGAN-gp/fake_images_epoch_5.png" alt="WGAN-gp Epoch 5"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/WGAN-gp/fake_images_epoch_10.png" alt="WGAN-gp Epoch 10"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/WGAN-gp/fake_images_epoch_15.png" alt="WGAN-gp Epoch 15"></div>
+            <a class="prev" onclick="plusSlides(-1, 5)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1, 5)">&#10095;</a>
+          </div>
+          <div class="slideshow-container">
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/styleGAN/fake_images_epoch_5.png" alt="styleGAN Epoch 5"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/styleGAN/fake_images_epoch_10.png" alt="styleGAN Epoch 10"></div>
+            <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu909/MBTrdemo/b6700e6d442fbb142f777215162243f38c77b04d/At1/styleGAN/fake_images_epoch_15.png" alt="styleGAN Epoch 15"></div>
+            <a class="prev" onclick="plusSlides(-1, 6)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1, 6)">&#10095;</a>
+          </div>
+        </div>
       </section>
     </div>
   </div>
-
-  <!-- Footer -->
   <div class="footer">
     <p class="text-sm">© 2025 MobilTelesco. All rights reserved. Licensed under CC BY 4.0.</p>
     <p class="text-sm">Cite: Parmar, S. (2025). MobilTelesco: A Smartphone based Astrophotography Dataset (v2.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.16993328</p>
-    <!-- <a href="https://play.google.com/store/apps/details?id=com.mobil.telesco" target="_blank">
-      <img src="playstore-icon.png" alt="Download on Play Store" class="playstore-icon">
-    </a> -->
     <p class="text-sm mt-2">Contact: <a href="mailto:shantanu.c.parmar@gmail.com" class="text-blue-600">shantanu.c.parmar@gmail.com</a> | Website: <a href="https://shantanu-parmar.github.io/" class="text-blue-600">shantanu-parmar.github.io</a></p>
   </div>
-
   <script>
     function switchTab(tabId) {
       document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
@@ -277,44 +209,103 @@
       document.querySelector(`.tab[onclick="switchTab('${tabId}')"]`).classList.add('active');
       document.getElementById(`${tabId}-tab`).classList.add('active');
     }
-
-    // Initialize with Detection as default
     switchTab('detection');
 
-    // 3D rendering with Three.js and STL loading
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('renderCanvas'), antialias: true });
-    renderer.setSize(600, 400);
-    camera.position.z = 5;
-
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-    scene.add(ambientLight);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    directionalLight.position.set(0, 1, 1);
-    scene.add(directionalLight);
-
-    // STL Loader
-    const loader = new THREE.STLLoader();
-    loader.load('https://raw.githubusercontent.com/Shantanu909/MBTrdemo/ae395c03fbeaf8638e331084c0d1fb10c2986795/mbtr.stl', (geometry) => {
-      const material = new THREE.MeshPhongMaterial({ color: 0xa8e6cf, specular: 0x111111, shininess: 100 });
-      const mesh = new THREE.Mesh(geometry, material);
-      scene.add(mesh);
-      geometry.computeBoundingBox();
-      const center = geometry.boundingBox.getCenter(new THREE.Vector3());
-      mesh.position.sub(center);
-      function animate() {
-        requestAnimationFrame(animate);
-        mesh.rotation.y += 0.01;
-        renderer.render(scene, camera);
+    // Ensure DOM is loaded before initializing Three.js
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('3dCanvasContainer');
+      if (!container) {
+        console.error('3D Canvas container not found');
+        return;
       }
-      animate();
-    }, undefined, (error) => {
-      console.error('Error loading STL file:', error);
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('renderCanvas'), antialias: true });
+      if (!renderer) {
+        console.error('WebGLRenderer initialization failed');
+        return;
+      }
+
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      camera.position.z = 100;
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(ambientLight);
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+      directionalLight.position.set(0, 1, 1);
+      scene.add(directionalLight);
+      const loader = new THREE.STLLoader();
+      let mesh;
+
+      loader.load('https://raw.githubusercontent.com/Shantanu909/MBTrdemo/ae395c03fbeaf8638e331084c0d1fb10c2986795/mbtr.stl', (geometry) => {
+        const material = new THREE.MeshPhongMaterial({ color: 0xa8e6cf, specular: 0x111111, shininess: 100 });
+        mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+        geometry.computeBoundingBox();
+        const center = geometry.boundingBox.getCenter(new THREE.Vector3());
+        mesh.position.sub(center);
+        const maxDimension = Math.max(geometry.boundingBox.max.x - geometry.boundingBox.min.x, geometry.boundingBox.max.y - geometry.boundingBox.min.y, geometry.boundingBox.max.z - geometry.boundingBox.min.z);
+        const scale = 10 / maxDimension;
+        mesh.scale.set(scale, scale, scale);
+        mesh.rotation.x = Math.PI/2 + Math.PI;
+        mesh.position.y = 5;
+        mesh.position.x = 0;
+        let isDragging = false;
+        let previousMousePosition = { x: 0, y: 0 };
+        container.addEventListener('mousedown', (event) => {
+          isDragging = true;
+          previousMousePosition = { x: event.clientX, y: event.clientY };
+        });
+        container.addEventListener('mousemove', (event) => {
+          if (isDragging) {
+            const deltaMove = { x: event.clientX - previousMousePosition.x, y: event.clientY - previousMousePosition.y };
+            mesh.rotation.y += deltaMove.x * 0.005;
+            previousMousePosition = { x: event.clientX, y: event.clientY };
+          }
+        });
+        container.addEventListener('mouseup', () => { isDragging = false; });
+        container.addEventListener('mouseleave', () => { isDragging = false; });
+        container.addEventListener('wheel', (event) => {
+          event.preventDefault();
+          const zoomSpeed = 0.05;
+          camera.position.z += event.deltaY * zoomSpeed;
+          camera.position.z = Math.max(5, Math.min(40, camera.position.z));
+          camera.updateProjectionMatrix();
+        });
+        function animate() {
+          requestAnimationFrame(animate);
+          if (mesh) { mesh.rotation.z += -0.01; }
+          renderer.render(scene, camera);
+        }
+        animate();
+      }, undefined, (error) => { console.error('Error loading STL file:', error); });
+
+      window.addEventListener('resize', () => {
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+      });
+    });
+
+    let slideIndex = [1, 1, 1, 1, 1, 1, 1];
+    let slideTimeout = [];
+    function plusSlides(n, slideShowIndex) { showSlides(slideIndex[slideShowIndex] += n, slideShowIndex); }
+    function showSlides(n, slideShowIndex) {
+      const containers = document.getElementsByClassName("slideshow-container");
+      if (slideShowIndex >= containers.length) return;
+      const slides = containers[slideShowIndex].getElementsByClassName("slide");
+      if (n > slides.length) { slideIndex[slideShowIndex] = 1 }
+      if (n < 1) { slideIndex[slideShowIndex] = slides.length }
+      for (let i = 0; i < slides.length; i++) { slides[i].style.display = "none"; }
+      if (slides.length > 0) {
+        slides[slideIndex[slideShowIndex] - 1].style.display = "block";
+        clearTimeout(slideTimeout[slideShowIndex]);
+        slideTimeout[slideShowIndex] = setTimeout(() => plusSlides(1, slideShowIndex), 3000);
+      }
+    }
+    document.querySelectorAll('.slideshow-container').forEach((container, index) => {
+      if (container.getElementsByClassName('slide').length > 0) { showSlides(slideIndex[index], index); }
     });
   </script>
 </body>
 </html>
-
-
-
