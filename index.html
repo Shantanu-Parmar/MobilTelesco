@@ -225,7 +225,7 @@
       scene.add(directionalLight);
       const loader = new THREE.STLLoader();
       let mesh;
-      loader.load('https://raw.githubusercontent.com/Shantanu-Parmar/MBTrdemo/d3cb4aa9e1088188013400abf052e8edb7007c36/mbtr.stl', (geometry) => {
+      loader.load('https://raw.githubusercontent.com/Shantanu-Parmar/MobilTelesco/87322dec0219c57bb447df213d43adfe4347ef43/mbtr.stl', (geometry) => {
         const material = new THREE.MeshPhongMaterial({ color: 0xa8e6cf, specular: 0x111111, shininess: 100 });
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
@@ -297,6 +297,7 @@
   </script>
 </body>
 </html>
+
 
 
 
