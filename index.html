@@ -29,7 +29,12 @@
     .tab-content.active { display: block; }
     .footer { text-align: center; padding: 2rem; background-color: #ffffff; box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); }
     .playstore-icon { height: 50px; width: auto; margin: 1rem; }
-    .slideshow-container { position: relative; max-width: 200px; height: 150px; margin: 0 auto; }
+    .slideshow-container {
+      position: relative;
+      max-width: 300px; /* Increased from 200px */
+      height: 300px; /* Increased from 150px to match width for square-like appearance */
+      margin: 0 auto;
+    }
     .slide { display: none; width: 100%; height: 100%; }
     .slide img { width: 100%; height: 100%; object-fit: cover; }
     .prev, .next { cursor: pointer; position: absolute; top: 50%; width: auto; padding: 0.5rem; color: #fff; font-weight: bold; font-size: 1rem; transition: 0.6s ease; background-color: rgba(0, 0, 0, 0.5); border-radius: 0 3px 3px 0; }
@@ -145,6 +150,7 @@
         <h2 class="text-2xl font-semibold mt-8 mb-4">Common GANs</h2>
         <div class="section-grid">
           <div class="slideshow-container">
+            <h3 class="text-xl font-semibold text-center mb-2">BigGAN</h3>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/BigGAN/fake_images_epoch_5_class6.png" alt="BigGAN Epoch 5 Class 6"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/BigGAN/fake_images_epoch_10_class0.png" alt="BigGAN Epoch 10 Class 0"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/BigGAN/fake_images_epoch_15_class0.png" alt="BigGAN Epoch 15 Class 0"></div>
@@ -152,6 +158,7 @@
             <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
           </div>
           <div class="slideshow-container">
+            <h3 class="text-xl font-semibold text-center mb-2">CGAN</h3>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/CGAN/fake_images_epoch_5_class0.png" alt="CGAN Epoch 5 Class 0"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/CGAN/fake_images_epoch_10_class2.png" alt="CGAN Epoch 10 Class 2"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/CGAN/fake_images_epoch_15_class5.png" alt="CGAN Epoch 15 Class 5"></div>
@@ -159,6 +166,7 @@
             <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
           </div>
           <div class="slideshow-container">
+            <h3 class="text-xl font-semibold text-center mb-2">DCGAN</h3>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/DCGAN/fake_images_epoch_5.png" alt="DCGAN Epoch 5"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/DCGAN/fake_images_epoch_10.png" alt="DCGAN Epoch 10"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/DCGAN/fake_images_epoch_15.png" alt="DCGAN Epoch 15"></div>
@@ -166,6 +174,7 @@
             <a class="next" onclick="plusSlides(1, 2)">&#10095;</a>
           </div>
           <div class="slideshow-container">
+            <h3 class="text-xl font-semibold text-center mb-2">DDIM</h3>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/DDIM/fake_images_epoch_5.png" alt="DDIM Epoch 5"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/DDIM/fake_images_epoch_10.png" alt="DDIM Epoch 10"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/DDIM/fake_images_epoch_15.png" alt="DDIM Epoch 15"></div>
@@ -173,6 +182,7 @@
             <a class="next" onclick="plusSlides(1, 3)">&#10095;</a>
           </div>
           <div class="slideshow-container">
+            <h3 class="text-xl font-semibold text-center mb-2">DDPM</h3>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/DDPM/fake_images_epoch_5.png" alt="DDPM Epoch 5"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/DDPM/fake_images_epoch_10.png" alt="DDPM Epoch 10"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/DDPM/fake_images_epoch_15.png" alt="DDPM Epoch 15"></div>
@@ -180,6 +190,7 @@
             <a class="next" onclick="plusSlides(1, 4)">&#10095;</a>
           </div>
           <div class="slideshow-container">
+            <h3 class="text-xl font-semibold text-center mb-2">WGAN-gp</h3>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/WGAN-gp/fake_images_epoch_5.png" alt="WGAN-gp Epoch 5"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/WGAN-gp/fake_images_epoch_10.png" alt="WGAN-gp Epoch 10"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/WGAN-gp/fake_images_epoch_15.png" alt="WGAN-gp Epoch 15"></div>
@@ -187,6 +198,7 @@
             <a class="next" onclick="plusSlides(1, 5)">&#10095;</a>
           </div>
           <div class="slideshow-container">
+            <h3 class="text-xl font-semibold text-center mb-2">styleGAN</h3>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/styleGAN/fake_images_epoch_5.png" alt="styleGAN Epoch 5"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/styleGAN/fake_images_epoch_10.png" alt="styleGAN Epoch 10"></div>
             <div class="slide"><img src="https://raw.githubusercontent.com/Shantanu-Parmar/StrCGAN/b6700e6d442fbb142f777215162243f38c77b04d/At1/styleGAN/fake_images_epoch_15.png" alt="styleGAN Epoch 15"></div>
@@ -196,8 +208,7 @@
         </div>
       </section>
     </div>
-  </div> 
-  
+  </div>
   <div class="footer">
     <p class="text-sm">© 2025 MobilTelesco. All rights reserved. Licensed under CC BY 4.0.</p>
     <p class="text-sm">Cite: Parmar, S. (2025). MobilTelesco: A Smartphone based Astrophotography Dataset (v2.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.16993328</p>
@@ -221,7 +232,7 @@
       }
 
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(20, container.clientWidth / container.clientHeight, 0.1, 1000);
+      const camera = new THREE.PerspectiveCamera(15, container.clientWidth / container.clientHeight, 0.1, 1000);
       const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('renderCanvas'), antialias: true });
       if (!renderer) {
         console.error('WebGLRenderer initialization failed');
@@ -230,6 +241,7 @@
 
       renderer.setSize(container.clientWidth, container.clientHeight);
       camera.position.z = 100;
+      camera.position.y = 2;
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
       scene.add(ambientLight);
       const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
@@ -301,7 +313,7 @@
       if (slides.length > 0) {
         slides[slideIndex[slideShowIndex] - 1].style.display = "block";
         clearTimeout(slideTimeout[slideShowIndex]);
-        slideTimeout[slideShowIndex] = setTimeout(() => plusSlides(1, slideShowIndex), 3000);
+        slideTimeout[slideShowIndex] = setTimeout(() => plusSlides(1, slideShowIndex), 1000); // Changed to 1000ms
       }
     }
     document.querySelectorAll('.slideshow-container').forEach((container, index) => {
@@ -310,5 +322,3 @@
   </script>
 </body>
 </html>
-
-
