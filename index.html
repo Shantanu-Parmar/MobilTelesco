@@ -226,7 +226,7 @@
       const loader = new THREE.STLLoader();
       let mesh;
 
-      loader.load('https://raw.githubusercontent.com/Shantanu-Parmar/MBTrdemo/ae395c03fbeaf8638e331084c0d1fb10c2986795/mbtr.stl', (geometry) => {
+      loader.load('https://raw.githubusercontent.com/Shantanu-Parmar/MobilTelesco/ed428f28a03d7cfefeff6ca2131eb4ad70ae26cb/MobilTelesco.stl', (geometry) => {
         const material = new THREE.MeshPhongMaterial({ color: 0xa8e6cf, specular: 0x111111, shininess: 100 });
         mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
@@ -298,5 +298,6 @@
   </script>
 </body>
 </html>
+
 
 
